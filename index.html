@@ -4,49 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Noam Salmon Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Avi Salmon - Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>Noam Salmon Page</h1>
-            <ul>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">AS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#interests">Interests</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <section id="hero">
-        <div class="hero-content">
-            <h2>Welcome to Noam Salmon's World</h2>
-            <p>Explore, Learn, and Connect</p>
+    <section id="home" class="hero">
+        <div class="hero-split">
+            <div class="hero-left">
+                <div class="profile-image small">
+                    <img src="https://github.com/avisalmon.png" alt="Avi Salmon">
+                </div>
+                <h1>Avi Salmon</h1>
+                <p class="subtitle">Technology Leader & Educator</p>
+                <div class="hero-social">
+                    <a href="https://github.com/avisalmon" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/avi-salmon-a32375" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.matazim.co.il/" target="_blank"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.youtube.com/@AviSalmon" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="quick-links">
+                    <a href="https://www.matazim.co.il/" class="quick-link-card matazim">
+                        <div class="quick-link-content">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Matazim</h3>
+                            <p>Young Technology Leaders Program</p>
+                        </div>
+                    </a>
+                    <a href="lectures.html" class="quick-link-card lecture">
+                        <div class="quick-link-content">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3>Innovation Lectures</h3>
+                            <p>Future of Technology & Organizations</p>
+                        </div>
+                    </a>
+                    <a href="#projects" class="quick-link-card projects">
+                        <div class="quick-link-content">
+                            <i class="fas fa-code-branch"></i>
+                            <h3>Tech Projects</h3>
+                            <p>Hardware & Software Development</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="content-section">
-        <h2>About Noam</h2>
-        <div class="about-container">
-            <img src="https://via.placeholder.com/150" alt="Noam Salmon">
-            <p>Noam Salmon is passionate about technology, education, and innovation. This page is dedicated to sharing projects, interests, and thoughts.</p>
+    <section id="featured" class="section">
+        <h2>Featured Work</h2>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="featured-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Matazim.co.il</h3>
+                </div>
+                <p>מטצים – מובילים טכנולוגיים צעירים (Young Technology Leaders) - A program focused on training young people as technology leaders and instructors during their middle and high school years. The platform offers free technology courses and connects young leaders with maker spaces across Israel.</p>
+                <div class="featured-links">
+                    <a href="https://www.matazim.co.il/" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="featured-card">
+                <div class="featured-header">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Innovation Lecture</h3>
+                </div>
+                <p>Insights on exponential organizations and the future of technology</p>
+                <div class="featured-links">
+                    <a href="https://www.youtube.com/watch?v=your-lecture-id" target="_blank">Watch Lecture <i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="interests" class="content-section">
-        <h2>Areas of Interest</h2>
-        <ul>
-            <li><a href="#">Technologyyy</a></li>
-            <li><a href="#">Programming</a></li>
-            <li><a href="#">Education</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Music</a></li>
-        </ul>
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p class="lead-text">Technology Leader with 25+ years of experience in Hardware, Software, and Education</p>
+                <p class="about-description">Currently leading innovative projects at Intel while pursuing my passion for education through www.matazim.co.il. I specialize in bridging the gap between complex technology and practical applications, with expertise in both hardware and software development.</p>
+                
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <i class="fas fa-microchip"></i>
+                            <h3>Intel</h3>
+                        </div>
+                        <p>Senior Hardware Engineer & Project Leader</p>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Matazim</h3>
+                        </div>
+                        <p>Founder of an innovative educational program developing the next generation of technology leaders in Israel. The platform provides free technological education and connects young leaders with maker spaces nationwide.</p>
+                    </div>
+                </div>
+
+                <div class="skills-container">
+                    <h3>Areas of Expertise</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-microchip"></i>
+                            <span>Hardware Engineering</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>Software Development</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Technology Education</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Project Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Technical Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Single Button Interface</h3>
+                </div>
+                <p>An innovative hardware interface design that simplifies user interaction through a single button mechanism. Complete with Python examples and games.</p>
+                <div class="project-links">
+                    <a href="https://github.com/avisalmon/single_button" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-tv"></i>
+                    <h3>VGA Starter</h3>
+                </div>
+                <p>FPGA-based VGA controller implementation for DE10-lite, providing fundamental building blocks for video signal generation and display interfacing.</p>
+                <div class="project-links">
+                    <a href="https://github.com/avisalmon/VGAstarter_DE10_lite" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Python Path</h3>
+                </div>
+                <p>A comprehensive Python learning path with Jupyter notebooks covering basics to advanced concepts.</p>
+                <div class="project-links">
+                    <a href="https://github.com/avisalmon/PythonPath" target="_blank">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <p>Feel free to reach out to me for collaborations or just a friendly chat!</p>
+            <div class="social-links">
+                <a href="https://github.com/avisalmon" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/avi-salmon-a32375" target="_blank">LinkedIn</a>
+                <a href="mailto:avi.salmon@gmail.com">Email</a>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Noam Salmon. All rights reserved.</p>
+        <p>&copy; 2024 Avi Salmon. All rights reserved.</p>
     </footer>
 </body>
 </html>

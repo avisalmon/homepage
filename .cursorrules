@@ -1,0 +1,5 @@
+palways work with virtual enviorenment called env in the project roiot directory.
+if such does not exist create it. 
+always ignore the env in the .gitignore file. 
+- this project us only a static web page.
+the main page is index.html but you can add as many pages as needed
