@@ -739,3 +739,29 @@ ul.recommendations li {
         margin-bottom: 10px;
     }
 }
+
+/* Hebrew text alignment */
+.hebrew-content {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Apply RTL to mini-research section */
+#mini-research h2,
+#mini-research .lead-text,
+#mini-research .about-description,
+#mini-research .featured-card h3,
+#mini-research .featured-card p,
+#mini-research .featured-links a {
+    direction: rtl;
+    text-align: right;
+}
+
+#mini-research .featured-links a {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+#mini-research .featured-header {
+    flex-direction: row-reverse;
+}
