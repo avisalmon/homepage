@@ -100,7 +100,7 @@ body {
 
 .quick-links {
     display: grid;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
     max-width: 500px;
 }
@@ -108,8 +108,8 @@ body {
 .quick-link-card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 1rem;
     transition: all 0.3s ease;
     text-decoration: none;
     color: white;
