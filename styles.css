@@ -474,6 +474,90 @@ footer {
     transform: translateY(-3px);
 }
 
+/* Research list styles */
+.research-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.research-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.research-item:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.research-item h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.4rem;
+}
+
+.research-title {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.research-title:hover {
+    color: #4facfe;
+}
+
+.research-description {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.research-description.collapsed {
+    max-height: 2.4em;
+}
+
+.research-description.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1.2em;
+    background: linear-gradient(to bottom, transparent, #f8f9fa);
+    pointer-events: none;
+}
+
+.research-description.expanded {
+    max-height: 500px;
+}
+
+.research-description.expanded::after {
+    display: none;
+}
+
+.research-description p {
+    margin: 0 0 0.5rem 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+.read-more {
+    display: inline-block;
+    color: #4facfe;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.read-more:hover {
+    color: #2c3e50;
+}
+
 /* Lectures section */
 .lectures-grid {
     display: grid;
