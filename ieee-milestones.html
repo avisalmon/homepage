@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IEEE Milestones - Avi Salmon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .ms-page { max-width: 1400px; margin: 80px auto 40px; padding: 0 20px; }
+    .ms-hero { text-align: center; margin-bottom: 28px; }
+    .ms-hero h1 { font-size: 2rem; color: #00629B; margin-bottom: 6px; }
+    .ms-hero p { color: #555; font-size: 0.95rem; }
+    .ms-controls {
+      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+      background: #f8fafc; border: 1px solid #dde3ea; border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 16px; position: sticky; top: 62px; z-index: 50;
+    }
+    .ms-search {
+      flex: 1; min-width: 220px; padding: 8px 14px; border: 1px solid #c8d0da;
+      border-radius: 6px; font-size: 0.9rem;
+    }
+    .ms-search:focus { outline: none; border-color: #00629B; box-shadow: 0 0 0 3px rgba(0,98,155,.15); }
+    .ms-btn {
+      padding: 7px 16px; border: 1px solid #c8d0da; border-radius: 6px;
+      background: white; font-size: 0.85rem; cursor: pointer; color: #333; white-space: nowrap;
+    }
+    .ms-btn.active { background: #00629B; color: white; border-color: #00629B; }
+    .ms-btn:hover:not(.active) { border-color: #00629B; color: #00629B; }
+    .ms-count { font-size: 0.82rem; color: #666; white-space: nowrap; margin-left: auto; }
+    .ms-wrap { overflow-x: auto; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    table.ms-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .ms-table thead th {
+      background: #00629B; color: white; padding: 10px 12px;
+      text-align: left; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .ms-table tbody tr { border-bottom: 1px solid #eef0f3; }
+    .ms-table tbody tr:hover { background: #f0f6fb; }
+    .ms-table td { padding: 7px 12px; vertical-align: middle; }
+    td.td-year { width: 52px; font-weight: 700; color: #00629B; font-size: 0.8rem; white-space: nowrap; }
+    td.td-name { min-width: 200px; max-width: 280px; font-weight: 600; color: #1a1a2e; }
+    td.td-desc { max-width: 380px; color: #444; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    td.td-loc { white-space: nowrap; color: #555; }
+    td.td-loc .loc-icon { color: #aaa; margin-right: 3px; font-size: 0.7rem; }
+    td.td-links { white-space: nowrap; }
+    .link-btn {
+      display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.74rem;
+      text-decoration: none; margin-right: 4px; border: 1px solid;
+    }
+    .link-btn.explore { background: #FFC107; border-color: #F9A825; color: #1a1a2e; font-weight: 700; }
+    .link-btn.ieee { background: #f5f5f5; border-color: #ccc; color: #444; }
+    .link-btn:hover { opacity: 0.85; }
+    tr.studied { background: linear-gradient(90deg, #fffdf0 0%, #fff 60%); }
+    tr.studied td.td-year { color: #e67e00; }
+    tr.studied td.td-name { border-left: 3px solid #FFC107; padding-left: 9px; }
+    .badge-studied {
+      display: inline-block; background: #FFC107; color: #1a1a2e; font-size: 0.65rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 5px; font-weight: 700; vertical-align: middle;
+    }
+    tr.section-hdr td {
+      background: #e8f0f8; color: #00629B; font-weight: 700;
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: .06em;
+      padding: 5px 12px; border-top: 2px solid #b8d0e8;
+    }
+    .no-results { text-align: center; padding: 40px; color: #888; font-size: 0.95rem; }
+    @media (max-width: 768px) { td.td-desc { display: none; } td.td-name { max-width: none; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">AS</div>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#mini-research">Research</a></li>
+        <li><a href="ieee-milestones.html">IEEE Milestones</a></li>
+        <li><a href="https://avisalmon.github.io/AI_education/" target="_blank">AI Education</a></li>
+        <li><a href="youtube.html">My Videos</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="ms-page">
+    <div class="ms-hero">
+      <h1><i class="fas fa-award"></i> IEEE Milestones</h1>
+      <p>Historical achievements in electrical engineering and computing, as recognised by the IEEE Engineering and Technology History Wiki (ETHW).</p>
+    </div>
+
+    <div class="ms-controls">
+      <i class="fas fa-search" style="color:#888"></i>
+      <input class="ms-search" id="msSearch" type="text" placeholder="Search milestones, locations, descriptions…" oninput="renderTable()">
+      <button class="ms-btn active" id="btnDate" onclick="setSort('date')"><i class="fas fa-calendar-alt"></i> By Date</button>
+      <button class="ms-btn" id="btnLoc" onclick="setSort('location')"><i class="fas fa-map-marker-alt"></i> By Location</button>
+      <span class="ms-count" id="msCount"></span>
+    </div>
+
+    <div class="ms-wrap">
+      <table class="ms-table">
+        <thead>
+          <tr>
+            <th>Year</th><th>Milestone</th><th>Description</th><th>Location</th><th>Links</th>
+          </tr>
+        </thead>
+        <tbody id="msBody"></tbody>
+      </table>
+      <div class="no-results" id="noResults" style="display:none">No milestones match your search.</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Avi Salmon. Data sourced from <a href="https://ethw.org/Milestones:List_of_IEEE_Milestones" target="_blank">IEEE ETHW</a>.</p>
+  </footer>
+
+<script>
+const M=[
+// Prior to 1800
+{y:1751,n:"Book 'Experiments and Observations on Electricity' by Benjamin Franklin",d:"Franklin's landmark book on electricity experiments and lightning rod theory, published by the Royal Society in London.",l:"Philadelphia, PA",c:"USA"},
+{y:1757,n:"Benjamin Franklin's Work in London",d:"Franklin lived on Craven Street, popularising electricity study, performing experiments, and advising on lightning conductors.",l:"London, England",c:"UK"},
+{y:1776,n:"Elekiteru: First Electrostatic Generator in Japan",d:"Gennai Hiraga demonstrated Japan's first friction-induced electrostatic generator, inspiring the country's first generation of electricity researchers.",l:"Kagawa",c:"Japan"},
+{y:1799,n:"Volta's Electrical Battery Invention",d:"Alessandro Volta developed the first electrical battery (Voltaic Cell) — the first continuous and reproducible source of electrical current.",l:"Como",c:"Italy"},
+// 1800–1850
+{y:1804,n:"Salvá's Electric Telegraph",d:"Francisco Salvá Campillo reported a new electric telegraph combining a voltaic pile with electrolysis detection to convey information at a distance.",l:"Barcelona",c:"Spain"},
+{y:1820,n:"The Birth of Electrodynamics",d:"André-Marie Ampère discovered the fundamental law of electrodynamics and developed the theory that electric currents are responsible for magnetism.",l:"Paris",c:"France"},
+{y:1828,n:"Shilling's Pioneering Contribution to Practical Telegraphy",d:"P.L. Shilling successfully transmitted messages by means of an electric current's effect on a magnetic needle, influencing inventors worldwide.",l:"St. Petersburg",c:"Russia"},
+{y:1836,n:"Callan's Pioneering Contributions to Electrical Science and Technology",d:"Rev. Nicholas Callan contributed significantly to the understanding of electrical induction and developed the induction coil.",l:"Maynooth",c:"Ireland"},
+{y:1838,n:"Demonstration of Practical Telegraphy",d:"Samuel Morse and Alfred Vail publicly demonstrated their telegraph system, transmitting through two miles of wire using dots and dashes.",l:"Morristown, NJ",c:"USA"},
+// 1850–1869
+{y:1852,n:"Electric Fire Alarm System",d:"The first municipal electric fire alarm system using call boxes with automatic location signaling was placed into operation in Boston.",l:"Boston, MA",c:"USA"},
+{y:1860,n:"Maxwell's Equations",d:"James Clerk Maxwell conceived the unified theory of electricity, magnetism and light, summarised in four fundamental equations.",l:"London & Glenlair",c:"UK"},
+{y:1860,n:"First Studies on Ring Armature for Direct-Current Dynamos",d:"Antonio Pacinotti at the University of Pisa built a dynamo with a slotted ring armature, a significant step toward practical electrical machines.",l:"Pisa",c:"Italy"},
+{y:1861,n:"Transcontinental Telegraph",d:"Western Union completed the first high-speed communications link between the Atlantic and Pacific coasts by telegraph.",l:"Fort Laramie, WY",c:"USA"},
+{y:1861,n:"Standardisation of the Ohm",d:"The International Committee on Electrical Standards provided a widely recognised standard for electrical resistance, named after Georg Simon Ohm.",l:"Glasgow",c:"UK"},
+{y:1866,n:"Landing of the Transatlantic Cable",d:"The first permanent electrical communications link between Europe and North America was established at Heart's Content on 27 July 1866.",l:"Heart's Content, Newfoundland",c:"Canada"},
+{y:1866,n:"County Kerry Transatlantic Cable Stations",d:"County Kerry became a major focal point for global communications with cable landings at Valentia, Ballinskelligs, and Waterville.",l:"County Kerry",c:"Ireland"},
+// 1870–1889
+{y:1876,n:"First Intelligible Voice Transmission over Electric Wire",d:"Alexander Graham Bell transmitted the first intelligible speech on 10 March 1876 in his Boston attic laboratory.",l:"Boston, MA",c:"USA"},
+{y:1876,n:"Thomas Alva Edison Historic Site at Menlo Park",d:"Edison developed the world's first industrial R&D laboratory and the first incandescent electric lighting and power generation system.",l:"Menlo Park, NJ",c:"USA"},
+{y:1876,n:"First Distant Speech Transmission in Canada",d:"Alexander Graham Bell demonstrated that the human voice could be transmitted electrically over 13 km between Brantford and Paris, Ontario.",l:"Paris, Ontario",c:"Canada"},
+{y:1882,n:"Vulcan Street Plant",d:"The world's first hydroelectric central station began operation near Appleton, Wisconsin, with a 110-volt direct current generator.",l:"Appleton, WI",c:"USA"},
+{y:1882,n:"First Central Station in South Carolina",d:"South Carolina's first central station for incandescent electric lighting started up in October 1882, one month after Edison's Pearl Street.",l:"Charleston, SC",c:"USA"},
+{y:1882,n:"Pearl Street Station",d:"Edison's Pearl Street Station began supplying electricity on 4 September 1882, the forerunner of all central electric generating stations.",l:"New York City, NY",c:"USA"},
+{y:1884,n:"First Technical Meeting of the AIEE",d:"The American Institute of Electrical Engineers (IEEE predecessor) held its first formal technical conference on electrical engineering in the USA.",l:"Philadelphia, PA",c:"USA"},
+{y:1885,n:"Rotating Fields and Early Induction Motors",d:"Galileo Ferraris demonstrated the rotating magnetic field principle and constructed prototypes of two-phase AC induction motors.",l:"Torino",c:"Italy"},
+{y:1886,n:"Alternating Current Electrification",d:"William Stanley demonstrated the first practical AC electrification system on Main Street in Great Barrington using transformers.",l:"Great Barrington, MA",c:"USA"},
+{y:1886,n:"First Generation and Experimental Proof of Electromagnetic Waves",d:"Heinrich Hertz verified Maxwell's prediction of electromagnetic waves at 450 MHz, demonstrating reflection, refraction and polarization.",l:"Karlsruhe",c:"Germany"},
+{y:1886,n:"Electric Lighting Of The Kingdom of Hawaii",d:"King Kalakaua promoted electric lighting; by 1888 Honolulu had a full electric lighting system following Iolani Palace's illumination.",l:"Honolulu, HI",c:"USA"},
+{y:1887,n:"Thomas A. Edison West Orange Laboratories and Factories",d:"Edison's final laboratory complex became the prototype for industrial enterprises worldwide, resulting in more than half his 1,093 patents.",l:"West Orange, NJ",c:"USA"},
+{y:1887,n:"Weston Meters",d:"Edward Weston introduced the first portable and direct-reading current and voltage meters, enabling precision electrical measurement.",l:"Newark, NJ",c:"USA"},
+{y:1888,n:"Richmond Union Passenger Railway",d:"Frank Julian Sprague's electric street railway in Richmond became the lasting prototype for electric street railways worldwide.",l:"Richmond, VA",c:"USA"},
+{y:1889,n:"Power System of Boston's Rapid Transit",d:"Boston was the first city to build electric traction for a large-scale rapid transit system, pioneering mass transit systems nationwide.",l:"Boston, MA",c:"USA"},
+{y:1889,n:"First Exploration and Proof of Liquid Crystals",d:"Otto Lehmann characterised the first liquid crystal materials in Karlsruhe, recognising a new state of matter called 'flüssige Kristalle'.",l:"Karlsruhe",c:"Germany"},
+// 1890–1899
+{y:1890,n:"Discovery of Radioconduction by Edouard Branly",d:"Branly discovered that electromagnetic waves change the ability of metal filings to conduct electricity, enabling early wireless signal detection.",l:"Paris",c:"France"},
+{y:1890,n:"Keage Power Station: Japan's First Commercial Hydroelectric Plant",d:"Keage Power Station achieved Japan's first commercial hydroelectric generation using water intake from the Lake Biwa Canal.",l:"Kyoto",c:"Japan"},
+{y:1891,n:"Ames Hydroelectric Generating Plant",d:"Electricity produced at Ames was transmitted 2.6 miles to a mine motor, demonstrating the practical value of long-distance electric power transmission.",l:"Ames, CO",c:"USA"},
+{y:1891,n:"Long Distance Electric Power Transmission Using Three-Phase AC",d:"The world's first long-distance (175 km), high-voltage (15 kV) three-phase AC power transmission was demonstrated at the 1891 Frankfurt Exhibition.",l:"Frankfurt am Main",c:"Germany"},
+{y:1891,n:"Anderson Bridge",d:"Alexander Anderson developed the Anderson Bridge for precise measurement of electrical inductance — the first invention enabling such measurements.",l:"Galway",c:"Ireland"},
+{y:1893,n:"Mill Creek No. 1 Hydroelectric Plant",d:"Foremost in the use of three-phase AC power for commercial application; influential in widespread adoption of three-phase power in the USA.",l:"Redlands, CA",c:"USA"},
+{y:1893,n:"Birth and Growth of Primary and Secondary Battery Industries in Japan",d:"Yai's 1893 dry battery patent gave birth to the Japanese battery industry, leading to global consumer electronics.",l:"Japan",c:"Japan"},
+{y:1894,n:"First Millimeter-wave Communication Experiments by J.C. Bose",d:"J.C. Bose demonstrated 60 GHz electromagnetic wave transmission over 23 metres through two walls, pioneering millimetre-wave components.",l:"Kolkata",c:"India"},
+{y:1895,n:"Adams Hydroelectric Generating Plant",d:"The Adams Plant, operational from 26 August 1895, was a key victory for AC over DC and influenced the future of the electrical industry worldwide.",l:"Niagara Falls, NY",c:"USA"},
+{y:1895,n:"Popov's Contribution to the Development of Wireless Communication",d:"A.S. Popov demonstrated transmission and reception of short signals over 64 metres using electromagnetic waves.",l:"St. Petersburg",c:"Russia"},
+{y:1895,n:"Marconi's Early Experiments in Wireless Telegraphy",d:"Guglielmo Marconi transmitted radiotelegraphic signals beyond a physical obstacle at about two kilometres, heralding wireless communication.",l:"Pontecchio Marconi",c:"Italy"},
+{y:1895,n:"Mainline Electrification of the Baltimore and Ohio Railroad",d:"The B&O demonstrated the first electrified main-line railroad at the Howard Street Tunnel on 27 June 1895.",l:"Baltimore, MD",c:"USA"},
+{y:1895,n:"Krka-Šibenik Electric Power System",d:"One of the first complete multiphase AC systems in the world, generating power at Krka and transmitting it to Šibenik's street lamps.",l:"Krka-Sibenik",c:"Croatia"},
+{y:1895,n:"Folsom Powerhouse",d:"The first 60-Hz three-phase generation plant, transmitting electricity 22 miles to Sacramento at 11,000 volts, establishing a US standard.",l:"Folsom, CA",c:"USA"},
+{y:1896,n:"Budapest Metroline No.1",d:"The first underground railway designed specifically for electric power, inaugurated in 1896 and influencing subway design worldwide.",l:"Budapest",c:"Hungary"},
+{y:1897,n:"Chivilingo Hydroelectric Plant",d:"The first hydroelectric plant in Chile and second in South America, providing power to Lota coal mines via a 10 km transmission line.",l:"Lota",c:"Chile"},
+{y:1898,n:"Decew Falls Hydro-Electric Plant",d:"Pioneering Canadian project transmitting power at 22,500 V over 56 km to Hamilton, Ontario on 25 August 1898.",l:"Decew Falls, Ontario",c:"Canada"},
+{y:1898,n:"Rheinfelden Hydroelectric Power Plant",d:"Outstanding early large-scale hydroelectric generation in Europe; pioneered 50-Hz three-phase AC, which became standard in most countries.",l:"Rheinfelden",c:"Germany"},
+{y:1898,n:"French Transatlantic Telegraph Cable of 1898",d:"Le Direct submarine cable spanned 3,174 nautical miles between Brest, France, and Orleans, Massachusetts without intermediate relay.",l:"Orleans, MA",c:"USA"},
+{y:1899,n:"First Operational Use Of Wireless Telegraphy",d:"The British Army and Navy successfully used Marconi's wireless telegraphy during the Anglo-Boer War (1899–1902).",l:"Capetown",c:"South Africa"},
+{y:1899,n:"Calcutta Electric Supply Corp",d:"CESC established the first commercial electric supply company in South Asia, delivering DC power for street lighting and trams on 17 April 1899.",l:"Kolkata",c:"India"},
+// 1900–1919
+{y:1900,n:"Georgetown Steam Hydro Generating Plant",d:"Georgetown was a pioneer in using three-phase 60-Hz AC and in being interconnected with other utilities; it employed both steam and water power.",l:"Georgetown, CO",c:"USA"},
+{y:1901,n:"Reception of Transatlantic Radio Signals",d:"Marconi and George Kemp confirmed reception of the first transatlantic radio signals at Signal Hill on 12 December 1901.",l:"Signal Hill, Newfoundland",c:"Canada"},
+{y:1901,n:"Transmission of Transatlantic Radio Signals",d:"On 12 December 1901, the Morse letter 'S' was broadcast from Poldhu using equipment built by John Ambrose Fleming.",l:"Poldhu, Cornwall",c:"UK"},
+{y:1901,n:"Early Developments in Remote-Control",d:"Leonardo Torres-Quevedo began developing 'Telekine', the world's first wireless remote-control system, testing it on dirigible balloons.",l:"Madrid",c:"Spain"},
+{y:1901,n:"Rationalization of Units",d:"Giovanni Giorgi proposed rationalising electromagnetism equations; his work became the basis of the internationally adopted SI system of units.",l:"Rome",c:"Italy"},
+{y:1901,n:"String Galvanometer",d:"Willem Einthoven's string galvanometer enabled the first clinical electrocardiogram (ECG) recording in 1905, founding modern electrocardiography.",l:"Leiden",c:"Netherlands"},
+{y:1902,n:"Poulsen-Arc Radio Transmitter",d:"Valdemar Poulsen invented an arc converter generating continuous-wave radio signals, used internationally until superseded by vacuum tubes.",l:"Lyngby",c:"Denmark"},
+{y:1903,n:"Vucje Hydroelectric Plant",d:"The first hydroelectric plant in southern Serbia and the largest in the region, transmitting 50-Hz AC at 7,000 V over 16 km.",l:"Leskovac",c:"Serbia"},
+{y:1904,n:"Alexanderson Radio Alternator",d:"Ernst Alexanderson designed high-power radio-frequency alternators up to 200 kW, providing reliable transoceanic radiotelegraph communication.",l:"Schenectady, NY",c:"USA"},
+{y:1904,n:"Fleming Valve",d:"Professor John Ambrose Fleming patented the thermionic diode (Fleming Valve), used to rectify oscillations and detect wireless signals.",l:"London",c:"UK"},
+{y:1904,n:"Radar Predecessor",d:"Christian Hülsmeyer demonstrated his Telemobiloskop — the world's first operable device to detect radio reflections — on 17 May 1904.",l:"Cologne",c:"Germany"},
+{y:1906,n:"Pinawa Hydroelectric Power Project",d:"On 9 June 1906, the Winnipeg Electric Railway Co. transmitted power at 60,000 V from Pinawa to Winnipeg — the first year-round Manitoba hydro plant.",l:"Nelson River",c:"Canada"},
+{y:1906,n:"First Wireless Radio Broadcast by Reginald A. Fessenden",d:"On 24 December 1906, Fessenden broadcast the first radio entertainment and music transmission using AM of continuous waves.",l:"Brant Rock, MA",c:"USA"},
+{y:1906,n:"Grand Central Terminal Electrification",d:"The first large-scale railroad electrification project; in continuous use since 1913 with innovative electric locomotive and third-rail design.",l:"New York, NY",c:"USA"},
+{y:1907,n:"Alternating-Current Electrification of the New York, New Haven & Hartford Railroad",d:"Pioneering mainline AC electrification that established single-phase AC as a viable alternative to DC for railroads.",l:"Cos Cob, CT",c:"USA"},
+{y:1909,n:"Shoshone Transmission Line",d:"Beginning 17 July 1909, this 153.4-mile 90-kV line crossed the Continental Divide three times — an outstanding engineering achievement.",l:"Georgetown, CO",c:"USA"},
+{y:1909,n:"World's First Reliable High Voltage Power Fuse",d:"Conrad and Schweitzer developed an arc-extinguishing high-voltage power fuse in 1909, central to electrical transmission and distribution today.",l:"Chicago, IL",c:"USA"},
+{y:1911,n:"Discovery of Superconductivity",d:"Professor Heike Kamerlingh Onnes observed that mercury resistance approached zero at 3 kelvins on 8 April 1911, discovering superconductivity.",l:"Leiden",c:"Netherlands"},
+{y:1914,n:"Panama Canal Electrical and Control Installations",d:"One of the largest electrical installations of the early 20th century, using 1,022 electric motors to replace steam and water powered equipment.",l:"Balboa",c:"Panama"},
+{y:1915,n:"Invention of Sonar",d:"Paul Langevin demonstrated piezoelectric quartz ultrasound pulses to detect submerged submarines at ranges up to 1,300 metres.",l:"Paris",c:"France"},
+{y:1916,n:"Czochralski Process",d:"Jan Czochralski invented the single-crystal growth method, enabling the development of electronic semiconductor devices and modern electronics.",l:"Warsaw / Berlin",c:"Poland"},
+{y:1919,n:"Emergence of Radio Broadcasting with Experimental Station XWA",d:"Licensed experimental station XWA in Montreal began broadcasting regular programmes of recorded music and news by December 1919.",l:"Montreal",c:"Canada"},
+// 1920–1929
+{y:1920,n:"Westinghouse Radio Station KDKA",d:"KDKA began scheduled programming with the 1920 presidential election returns — a world pioneer of commercial radio broadcasting.",l:"Pittsburgh, PA",c:"USA"},
+{y:1920,n:"Germany's First Broadcast Transmission from Königs Wusterhausen",d:"The 22 December 1920 concert from Königs Wusterhausen is regarded as the birth of regulated broadcasting in Germany.",l:"Königs Wusterhausen",c:"Germany"},
+{y:1921,n:"Piezoelectric Oscillator",d:"Research at Wesleyan led to the first circuit controlling frequencies using a quartz crystal resonator, applied in sonar, radar, and wristwatches.",l:"Middletown, CT",c:"USA"},
+{y:1921,n:"RCA Central",d:"The world's most powerful transoceanic radio facility was inaugurated at Rocky Point on 5 November 1921 using 220-kW Alexanderson transmitters.",l:"Rocky Point, NY",c:"USA"},
+{y:1922,n:"Neutrodyne Circuit",d:"Invented near Hoboken in 1922, the Neutrodyne eliminated parasitic oscillation squeals, greatly expanding radio adoption by the public.",l:"Hoboken, NJ",c:"USA"},
+{y:1924,n:"Directive Short Wave Antenna",d:"Professor Hidetsugu Yagi and Shintaro Uda designed the sensitive and highly directional Yagi antenna, essential for radar, TV, and amateur radio.",l:"Miyagi",c:"Japan"},
+{y:1924,n:"Development of Electronic Television",d:"Professor Kenjiro Takayanagi began television research at Hamamatsu in 1924; transmitted a Japanese character on CRT in December 1926.",l:"Hamamatsu",c:"Japan"},
+{y:1924,n:"Enrico Fermi's Major Contribution to Semiconductor Statistics",d:"Fermi developed Fermi-Dirac quantum statistics while at the University of Florence, fundamental to semiconductor physics.",l:"Florence",c:"Italy"},
+{y:1925,n:"Bell Telephone Laboratories, Inc.",d:"Bell Labs (1925–83) introduced the transistor, information theory, the laser concept, UNIX, C language, and hundreds of other foundational technologies.",l:"Murray Hill, NJ",c:"USA"},
+{y:1926,n:"First Public Demonstration of Television",d:"John Logie Baird demonstrated live television to members of the Royal Institution on 26 January 1926 at 22 Frith Street, London.",l:"London",c:"UK"},
+{y:1928,n:"One-Way Police Radio Communication",d:"The Detroit Police Department commenced regular one-way radio communication with patrol cars on 7 April 1928.",l:"Detroit, MI",c:"USA"},
+{y:1928,n:"Raman Effect",d:"C.V. Raman discovered on 28 February 1928 that scattered light changes wavelength depending on material properties, foundational for photonic spectroscopy.",l:"Kolkata",c:"India"},
+{y:1929,n:"Shannon Scheme for the Electrification of the Irish Free State",d:"The Shannon Scheme hydroelectric project, opened 22 July 1929, became a model for large-scale electrification projects worldwide.",l:"Ardnacrusha",c:"Ireland"},
+{y:1929,n:"Largest Private (dc) Generating Plant in the U.S.A.",d:"The New Yorker Hotel's 1929 DC plant was capable of supplying power sufficient for a city of 35,000 people.",l:"New York, NY",c:"USA"},
+{y:1929,n:"Yosami Radio Transmitting Station",d:"In April 1929, Yosami established the first wireless communications between Japan and Europe using 500-kW long-wave transmission.",l:"Kariya City",c:"Japan"},
+{y:1929,n:"First Blind Takeoff, Flight and Landing",d:"Lt. James Doolittle performed the first fully instrument-guided blind flight at Mitchel Field on 24 September 1929.",l:"Garden City, NY",c:"USA"},
+// 1930–1939
+{y:1930,n:"Development of Ferrite Materials and Their Applications",d:"Kato and Takei invented ferrite at Tokyo Institute of Technology in 1930; TDK began mass production in 1937 for radio equipment.",l:"Tokyo",c:"Japan"},
+{y:1931,n:"Invention of Stereo Sound Reproduction",d:"Alan Dower Blumlein filed his 'stereo' patent on 14 December 1931, including binaural recording techniques still foundational today.",l:"London",c:"UK"},
+{y:1932,n:"First Breaking of Enigma Code by the Team of Polish Cipher Bureau",d:"Polish mathematicians Rejewski, Różycki, and Zygalski broke German Enigma codes and built the 'bomba' — the first cryptanalytic machine.",l:"Warsaw",c:"Poland"},
+{y:1933,n:"Two-Way Police Radio Communication",d:"Bayonne, NJ initiated regular two-way police radio in 1933, enabling patrolmen to communicate with headquarters and each other.",l:"Bayonne, NJ",c:"USA"},
+{y:1933,n:"Invention of a Temperature-Insensitive Quartz Oscillation Plate",d:"Issac Koga at Tokyo Tech reported crystal cuts with zero temperature coefficient, indispensable for all radio communication systems.",l:"Tokyo",c:"Japan"},
+{y:1934,n:"Long-Range Shortwave Voice Transmissions from Byrd's Antarctic Expedition",d:"Beginning 3 February 1934, Byrd's expedition transmitted news releases to New York via short-wave — the first such long-range voice broadcasts.",l:"Cedar Rapids, IA",c:"USA"},
+{y:1937,n:"Westinghouse Atom Smasher",d:"The five-million-volt van de Graaff generator at Forest Hills made possible precise measurements of nuclear reactions.",l:"Forest Hills, PA",c:"USA"},
+{y:1938,n:"Zenit Parabolic Reflector L-band Pulsed Radar",d:"Designed by Slutskin, Usikov, and Braude, Zenit established the practicality of pulsed microwave radar for determining all three target coordinates.",l:"Kharkiv",c:"Ukraine"},
+{y:1939,n:"Atanasoff-Berry Computer",d:"John Atanasoff and Clifford Berry constructed the prototype electronic-digital computer in October 1939, using binary numbers and regenerative memory.",l:"Ames, IA",c:"USA"},
+{y:1939,n:"Code-breaking at Bletchley Park during World War II",d:"12,000 personnel broke German, Japanese, and Italian codes using the electromechanical Bombe and electronic Colossus, helping end WWII.",l:"Bletchley Park",c:"UK"},
+{y:1939,n:"Single-element Unidirectional Microphone - Shure Unidyne",d:"Shure's 1939 Unidyne was the first microphone to provide directional characteristics using a single dynamic element.",l:"Niles, IL",c:"USA"},
+{y:1939,n:"Development of Information Theory",d:"Claude Shannon's mathematical principles of information theory (1939–67) established fundamental limits of communication and information processing.",l:"Cambridge, MA",c:"USA"},
+{y:1939,n:"Development of the Cavity Magnetron",d:"Randall, Boot, and Sayers at Birmingham demonstrated cavity magnetrons that enabled microwave radar and later microwave ovens.",l:"Birmingham",c:"UK"},
+// 1940–1949
+{y:1940,n:"FM Police Radio Communication",d:"Connecticut State Police began operating a statewide FM two-way police radio in Hartford in 1940, greatly reducing static over AM.",l:"Hartford, CT",c:"USA"},
+{y:1940,n:"MIT Radiation Laboratory",d:"The MIT Rad Lab (1940–45) made fundamental contributions to microwave radar, long-range navigation, and systems engineering.",l:"Cambridge, MA",c:"USA"},
+{y:1940,n:"Loran",d:"Developed at MIT's Radiation Lab starting 1940, Loran provided the world's first near-real-time positioning information, used until 2010.",l:"Cambridge, MA",c:"USA"},
+{y:1941,n:"Opana Radar Site",d:"On 7 December 1941, the SCR-270b radar at Opana tracked incoming Japanese aircraft for 30 minutes — the first wartime radar use by the USA.",l:"Kuhuku, Hawaii",c:"USA"},
+{y:1942,n:"US Naval Computing Machine Laboratory",d:"The Navy joined NCR to design and manufacture American 'Bombes' that broke German Enigma codes and significantly influenced WWII.",l:"Dayton, OH",c:"USA"},
+{y:1944,n:"Whirlwind Computer",d:"The first real-time high-speed digital computer using random-access magnetic-core memory, ancestor of SAGE and many business computers.",l:"Cambridge, MA",c:"USA"},
+{y:1944,n:"Harvard Mark I Computer",d:"Howard Aiken's general-purpose electro-mechanical computer, built by IBM, was the first large-scale electro-mechanical computer.",l:"Cambridge, MA",c:"USA"},
+{y:1945,n:"Merrill Wheel-Balancing System",d:"Marcellus Merrill implemented the first electronic dynamic wheel-balancing system in 1945, replacing previous static methods.",l:"Denver, CO",c:"USA"},
+{y:1945,n:"Rincón del Bonete Hydroelectric Plant",d:"Uruguay's large hydroelectric project on the Río Negro began supplying power in December 1945, a turning point in the country's development.",l:"Rincon del Bonete",c:"Uruguay"},
+{y:1946,n:"Electronic Numerical Integrator and Computer",d:"ENIAC, operational at the University of Pennsylvania in 1946, established the practicality of large-scale digital computers.",l:"Philadelphia, PA",c:"USA"},
+{y:1946,n:"Monochrome-Compatible Electronic Color Television",d:"RCA Laboratories invented the world's first electronic monochrome-compatible colour television system, the basis of US analog broadcasting.",l:"Princeton, NJ",c:"USA"},
+{y:1946,n:"Detection of Radar Signals Reflected from the Moon",d:"Project Diana at Camp Evans reflected radar signals off the Moon on 10 January 1946, marking the beginning of radar astronomy.",l:"Wall, NJ",c:"USA"},
+{y:1947,n:"Invention of the First Transistor at Bell Telephone Laboratories",d:"Brattain, Bardeen, and Shockley discovered the transistor effect and demonstrated the first point-contact transistor on 23 December 1947.",l:"New Providence, NJ",c:"USA"},
+{y:1947,n:"Invention of Holography",d:"Dennis Gabor conceived wavefront reconstruction in 1947, the basis for optical holography; awarded the Nobel Prize in 1971.",l:"London",c:"UK"},
+{y:1948,n:"Birthplace of the Bar Code",d:"Bernard Silver and Norman Woodland at Drexel developed the barcode identification system, patented in 1952, now ubiquitous worldwide.",l:"Philadelphia, PA",c:"USA"},
+{y:1948,n:"The Discovery of the Principle of Self-Complementarity in Antennas and the Mushiake Relationship",d:"Prof. Yasuto Mushiake at Tohoku University discovered that self-complementary antennas are frequency-independent, enabling very-wideband designs.",l:"Sendai",c:"Japan"},
+{y:1948,n:"First Atomic Clock",d:"Harold Lyons at the National Bureau of Standards developed the first atomic clock using ammonia molecule transitions, enabling GPS accuracy.",l:"Washington, DC",c:"USA"},
+{y:1948,n:"Manchester University 'Baby' Computer and its Derivatives",d:"On 21 June 1948 the 'Baby' was the first computer to execute a stored program; it led directly to Ferranti's first commercial computer.",l:"Manchester",c:"UK"},
+{y:1948,n:"Manchester Code",d:"Invented at Manchester in 1948–49 for magnetic drum storage, Manchester code became standard for computer tapes, Ethernet, and Voyager spacecraft.",l:"Manchester",c:"UK"},
+{y:1949,n:"Commercialization of the Fish Finder",d:"Furuno Electric commercialised the world's first fish finder in 1949, dramatically reforming the fishery industry in Japan and worldwide.",l:"Nishinomiya",c:"Japan"},
+// 1950–1959
+{y:1950,n:"Electronic Technology for Space Rocket Launches",d:"Radar tracking, telemetry, guidance, and real-time computation developed at Cape Canaveral enabled the 1969 Moon landing.",l:"Cape Canaveral, FL",c:"USA"},
+{y:1950,n:"First External Cardiac Pacemaker",d:"Bigelow, Callaghan, and Hopps demonstrated the first external electronic pacemaker on a dog heart at the Banting Institute, Toronto.",l:"Toronto",c:"Canada"},
+{y:1951,n:"Transistor Manufacturing",d:"The commercial manufacture of transistors began at Western Electric's Allentown plant in October 1951, revolutionising electronics.",l:"Allentown, PA",c:"USA"},
+{y:1951,n:"Experimental Breeder Reactor I",d:"On 20 December 1951, EBR-I first generated electricity from a sustained nuclear reaction, inaugurating the nuclear power industry in the USA.",l:"Idaho Falls, ID",c:"USA"},
+{y:1951,n:"SAGE-Semi-Automatic Ground Environment",d:"MIT's SAGE air defense system (1951–58) was the forerunner of today's digital computer networks.",l:"Lexington, MA",c:"USA"},
+{y:1951,n:"Cobalt-60 Radiation Cancer Treatment Machines",d:"Two Canadian teams independently designed the first cobalt-60 radiation treatment machines; first applied at Victoria Hospital, London ON, on 27 October 1951.",l:"London, ON / Saskatoon, SK",c:"Canada"},
+{y:1951,n:"A-0 Compiler and Initial Development of Automatic Programming",d:"Grace Hopper invented the A-0 Compiler in 1951–52, the first linker/loader and a direct precursor to COBOL.",l:"Philadelphia, PA",c:"USA"},
+{y:1953,n:"First Television Broadcast in Western Canada",d:"The CBC's CBUT Channel 2 transmitted Western Canada's first TV broadcast from North Vancouver on 16 December 1953.",l:"North Vancouver, BC",c:"Canada"},
+{y:1954,n:"Gotland High Voltage Direct Current Link",d:"The world's first commercial HVDC transmission link connected Gotland Island to mainland Sweden using mercury-arc valves.",l:"Gotland",c:"Sweden"},
+{y:1954,n:"Parametron",d:"Eiichi Goto invented the parametron logic element at the University of Tokyo in 1954; it powered Japan's first stored-program computer.",l:"Tokyo",c:"Japan"},
+{y:1955,n:"WEIZAC Computer",d:"Israel's first computer, built at the Weizmann Institute in 1954–55 under Gerald Estrin, became an indispensable scientific resource across the Middle East.",l:"Rehovot",c:"Israel",study:true,link:"https://avisalmon.github.io/WEISAC/"},
+{y:1956,n:"RAMAC",d:"IBM's Random Access Method of Accounting and Control (1956) was the first computer system built around a magnetic disk storage device.",l:"San Jose, CA",c:"USA"},
+{y:1956,n:"First Submarine Transatlantic Telephone Cable System (TAT-1)",d:"Global telephone communications via submarine cable began on 25 September 1956 when TAT-1 went into service.",l:"Clarenville, Canada / Oban, Scotland",c:"Canada"},
+{y:1956,n:"Kurobe River No. 4 Hydropower Plant",d:"The innovative Kurobe No. 4 plant with 275-kV long-distance transmission solved serious power shortages in the Kansai region.",l:"Kurobe",c:"Japan"},
+{y:1956,n:"Ampex Videotape Recorder",d:"Ampex introduced the first practical videotape recorder for TV stations in 1956, replacing film kinescope recordings for 20 years.",l:"Redwood City, CA",c:"USA"},
+{y:1956,n:"Birthplace of Silicon Valley",d:"The Shockley Semiconductor Laboratory at 391 San Antonio Road manufactured the first silicon devices, spawning the Silicon Valley industry.",l:"Mountain View, CA",c:"USA"},
+{y:1957,n:"First Wearable Cardiac Pacemaker",d:"Earl Bakken developed the first battery-powered wearable transistorised pacemaker in 1957–58, liberating patients from AC power cords.",l:"Minneapolis, MN",c:"USA"},
+{y:1957,n:"SCR/Thyristor",d:"General Electric introduced the silicon controlled rectifier (SCR) in 1957, revolutionising efficient control of electric energy.",l:"Rochester, NY",c:"USA"},
+{y:1957,n:"Atlas Computer and the Invention of Virtual Memory",d:"Tom Kilburn's Atlas computer at Manchester invented virtual memory, enabling multiple users to share memory transparently.",l:"Manchester",c:"UK"},
+{y:1958,n:"First Semiconductor Integrated Circuit (IC)",d:"Jack Kilby demonstrated the first working integrated circuit on 12 September 1958 — the fundamental building block of virtually all electronic equipment.",l:"Dallas, TX",c:"USA"},
+{y:1958,n:"Star of Laufenburg Interconnection",d:"The Laufenburg site pioneered international power interconnection of Switzerland, Germany, and France, evolving into the continental European grid.",l:"Laufenburg",c:"Switzerland"},
+{y:1958,n:"The Trans-Canada Microwave System",d:"On 1 July 1958, a 6,275-km microwave network introduced live national TV and direct-dialled long-distance telephony across Canada.",l:"Vancouver / Winnipeg / Halifax",c:"Canada"},
+{y:1958,n:"First Battery-Operated Solar Panel Installation in Japan",d:"Tohoku Electric and NEC installed Japan's first solar panel at Shinobuyama radio relay in 1958, demonstrating solar energy viability.",l:"Sendai, Miyagi",c:"Japan"},
+{y:1959,n:"Semiconductor Planar Process and Integrated Circuit",d:"Jean Hoerni's planar process and Robert Noyce's planar IC catapulted the semiconductor industry into the silicon IC era.",l:"Palo Alto, CA",c:"USA"},
+{y:1959,n:"Commercialization and Industrialization of Photovoltaic Cells",d:"Sharp pioneered PV cell development from monocrystal research in 1959 to mass production of amorphous cells in 1983.",l:"Nara and Osaka",c:"Japan"},
+{y:1959,n:"Project Echo, Telstar, and Discovery of Cosmic Background Radiation",d:"Bell Labs' horn-reflector antenna at Holmdel demonstrated the Echo satellite (1960), Telstar (1962), and first detected cosmic background radiation in 1964.",l:"Holmdel, NJ",c:"USA"},
+// 1960–1969
+{y:1960,n:"IBM Thomas J. Watson Research Center",d:"In its first 25 years, the Watson Center produced DRAM, RISC architecture, integer programming, and thin-film recording heads.",l:"Yorktown Heights, NY",c:"USA"},
+{y:1960,n:"TIROS I Television Infrared Observation Satellite",d:"NASA's TIROS I, launched 1 April 1960, was the world's first meteorological satellite, pioneering weather and environmental imaging.",l:"Princeton, NJ",c:"USA"},
+{y:1960,n:"First Working Laser",d:"Theodore Maiman built and operated the first laser in May 1960 using a ruby rod pumped by a flash lamp.",l:"Malibu, CA",c:"USA"},
+{y:1960,n:"MARS-1 — First Automated Railway Booking System",d:"Japanese National Railways' MARS-1 (1960) was the world's first automated railway booking system, supporting real-time seat reservations.",l:"Tokyo",c:"Japan"},
+{y:1961,n:"First Optical Fiber Laser and Amplifier",d:"Elias Snitzer constructed the world's first optical fiber laser (1961) and fiber amplifier (1964) at American Optical, Southbridge.",l:"Southbridge, MA",c:"USA"},
+{y:1961,n:"Object-Oriented Programming",d:"Dahl and Nygaard created the Simula languages at the Norwegian Computer Center (1961–67), introducing object-oriented programming.",l:"Oslo",c:"Norway"},
+{y:1962,n:"Stanford Linear Accelerator Center",d:"The Stanford two-mile accelerator probes subatomic structure, revealing quarks as components of protons.",l:"Menlo Park, CA",c:"USA"},
+{y:1962,n:"Alouette-ISIS Satellite Program",d:"Canada's Alouette-I (1962) launched the country's satellite programme for ionospheric research supporting Arctic communications.",l:"Ottawa, Ontario",c:"Canada"},
+{y:1962,n:"First Transatlantic Reception of a Television Signal via Satellite",d:"Pleumeur-Bodou received the first transatlantic TV signal from Andover, Maine, via TELSTAR on 11 July 1962.",l:"Pleumeur-Bodou",c:"France"},
+{y:1962,n:"First Transatlantic Transmission of a Television Signal via Satellite",d:"Andover, Maine transmitted the first transatlantic TV signal to France via TELSTAR on 11 July 1962.",l:"Andover, ME",c:"USA"},
+{y:1962,n:"First Transatlantic Television Signal via Satellite (Goonhilly)",d:"Goonhilly Downs transmitted the first European-to-USA live TV signal via TELSTAR on 11 July 1962; 'Arthur' dish became a model worldwide.",l:"Goonhilly Downs, Cornwall",c:"UK"},
+{y:1962,n:"Pioneering Work on the Quartz Electronic Wristwatch",d:"Centre Electronique Horloger of Neuchâtel produced the first prototype quartz watches with dedicated ICs, setting timekeeping records in 1967.",l:"Neuchâtel",c:"Switzerland"},
+{y:1962,n:"Mercury Spacecraft MA-6",d:"John Glenn's Friendship 7 orbital flight on 20 February 1962 used McDonnell-engineered navigation, control, and fly-by-wire systems.",l:"St. Louis, MO",c:"USA"},
+{y:1962,n:"Grumman Lunar Module",d:"The Grumman Lunar Module was the first vehicle to land humans on an extraterrestrial body, with novel lightweight metals and electronics.",l:"Bethpage, NY",c:"USA"},
+{y:1962,n:"Apollo Guidance Computer",d:"MIT's Apollo Guidance Computer (1962–72) was the first real-time embedded computer providing mission-critical navigation for the Moon missions.",l:"Cambridge, MA",c:"USA"},
+{y:1962,n:"First Geographic Information System (GIS)",d:"Roger Tomlinson at the Canadian Dept. of Forestry created the first GIS (1962–68), revolutionising spatial data analysis worldwide.",l:"Ottawa, Ontario",c:"Canada"},
+{y:1962,n:"Semiconductor Laser",d:"In autumn 1962, GE, IBM Watson, and MIT Lincoln Lab independently demonstrated the first semiconductor lasers, now ubiquitous in data storage and communications.",l:"Niskayuna, NY",c:"USA"},
+{y:1963,n:"NAIC/Arecibo Radiotelescope",d:"The world's largest radiotelescope, dedicated 1963, advanced antenna design, signal processing, and contributed to radio astronomy and planetary studies.",l:"Arecibo, Puerto Rico",c:"USA"},
+{y:1963,n:"Taum Sauk Pumped-Storage Electric Power Plant",d:"When operational in 1963, Taum Sauk was the largest pure pumped-storage plant in North America, pioneering remote operation.",l:"Proffit Mountain, MO",c:"USA"},
+{y:1963,n:"First Transpacific Reception of a Television Signal via Satellite",d:"On 23 November 1963, Takahagi City received the first transpacific TV signal from California via Relay 1, using a 20-m Cassegrain antenna.",l:"Takahagi City",c:"Japan"},
+{y:1963,n:"American Standard Code for Information Interchange (ASCII)",d:"The ASCII standard, published in 1963, became the most common character encoding on the World Wide Web through 2007.",l:"Middletown, NJ",c:"USA"},
+{y:1964,n:"Mount Fuji Radar System",d:"The world's highest weather radar when completed in 1964, it immediately warned of a storm over 800 km away, pioneering remote-controlled complex electronics.",l:"Mount Fuji",c:"Japan"},
+{y:1964,n:"Tokaido Shinkansen (Bullet Train)",d:"The Tokaido Shinkansen began service in 1964 at up to 210 km/h, carrying over 100 million passengers per year with an excellent safety record.",l:"Nagoya",c:"Japan"},
+{y:1964,n:"Pioneering Work on Electronic Calculators",d:"Sharp designed and produced electronic calculators from all-transistor (1964) to CMOS-LSI/LCD (1973), enabling handheld personal computing.",l:"Tenri City",c:"Japan"},
+{y:1964,n:"TPC-1 Transpacific Cable System",d:"The first transpacific submarine telephone cable linking Japan, Hawaii, and the US mainland was completed in 1964.",l:"Honolulu, HI",c:"USA"},
+{y:1964,n:"The High Definition Television System",d:"NHK researched HDTV from 1964; the world's first HDTV satellite broadcast opened a new era in broadcasting in 1989.",l:"Tokyo",c:"Japan"},
+{y:1964,n:"BASIC Computer Language",d:"BASIC was created at Dartmouth in 1964 and became the principal programming language on early microcomputers in the 1970s–80s.",l:"Hanover, NH",c:"USA"},
+{y:1964,n:"First Demonstration of the Fast Fourier Transform (FFT)",d:"The Cooley-Tukey FFT was demonstrated at IBM Research in 1964, accelerating digital signal processing in countless applications.",l:"Princeton, NJ",c:"USA"},
+{y:1965,n:"Alvin Deep-Sea Research Submersible",d:"Commissioned in 1965, Alvin pioneered acoustic navigation, underwater photography, and discovered hydrothermal vents.",l:"Woods Hole, MA",c:"USA"},
+{y:1965,n:"First 735 kV AC Transmission System",d:"Hydro-Quebec's 735 kV system, inaugurated 29 November 1965, was the first AC system above 700 kV, extending long-distance power transmission limits.",l:"Quebec",c:"Canada"},
+{y:1965,n:"Railroad Ticketing Examining System",d:"Automatic ticket examining machines were first installed in Osaka in 1965, pioneering rapid-transit automation.",l:"Osaka",c:"Japan"},
+{y:1965,n:"Dadda's Multiplier",d:"Luigi Dadda published the optimised binary multiplier tree (Dadda Tree) in 1965, enabling fast arithmetic units in microprocessors.",l:"Milano",c:"Italy"},
+{y:1965,n:"Moore's Law",d:"Gordon Moore's 1965 prediction at Fairchild — that IC component density doubles periodically — guided the electronics industry for over 50 years.",l:"Mountain View, CA",c:"USA"},
+{y:1965,n:"Development of Computer Graphics and Visualization Techniques",d:"University of Utah's ARPA-funded graphics centre (1965–78) produced Gouraud shading, Catmull-Rom splines, and alumni companies including Pixar and Adobe.",l:"Salt Lake City, UT",c:"USA"},
+{y:1965,n:"Pioneering Medical Information System",d:"Lockheed and El Camino Hospital created the first hospital-wide computerised medical information system (1965–74), leading to modern clinical informatics.",l:"Mountain View, CA",c:"USA"},
+{y:1966,n:"Interactive Video Games",d:"Sanders Associates' 'Brown Box' (1966–68) was the first interactive video game system using an ordinary TV, spawning the commercial games industry.",l:"Nashua, NH",c:"USA"},
+{y:1966,n:"DIALOG Online Search System",d:"DIALOG (1966) was the first interactive online search system addressing large databases, preceding major Internet search tools by over two decades.",l:"Mountain View, CA",c:"USA"},
+{y:1967,n:"First Radio Astronomical Observations Using VLBI",d:"On 17 April 1967, radio astronomers made the first VLBI observations using telescopes 3,074 km apart; VLBI now spans the globe.",l:"Kaleden, BC",c:"Canada"},
+{y:1967,n:"First Karaoke Machine",d:"Shigeichi Negishi created the first karaoke machine in 1967 — a mixer, microphone, and 8-track player with a coin payment system.",l:"Tokyo",c:"Japan"},
+{y:1967,n:"Vacuum Fluorescent Displays",d:"Tadashi Nakamura commercialised VFDs in 1967; they revolutionised calculators in 1972 and were widely used in consumer electronics through the 1990s.",l:"Mie",c:"Japan"},
+{y:1968,n:"CERN Experimental Instrumentation",d:"Multiple-wire proportional chambers and drift chambers invented at CERN revolutionised electronic particle detection.",l:"Geneva",c:"Switzerland"},
+{y:1968,n:"Liquid Crystal Display",d:"A team at RCA Sarnoff led by George Heilmeier devised electronic control of light in liquid crystals (1964–68), launching a global display industry.",l:"Princeton, NJ",c:"USA"},
+{y:1968,n:"Public Demonstration of Online Systems and Personal Computing",d:"Douglas Engelbart's 'Mother of All Demos' (9 December 1968) showcased hypertext, video conferencing, word processing, and the mouse.",l:"Menlo Park, CA",c:"USA"},
+{y:1968,n:"Molecular Beam Epitaxy",d:"MBE techniques developed at Bell Labs in 1968–70 enable single-crystal semiconductor growth one atomic layer at a time.",l:"Murray Hill, NJ",c:"USA"},
+{y:1969,n:"Electronic Quartz Wristwatch",d:"Seiko's Quartz-Astron 35SQ (December 1969) was the first quartz wristwatch sold to the public, accurate to within 5 seconds per month.",l:"Tokyo",c:"Japan"},
+{y:1969,n:"Birthplace of the Internet (UCLA)",d:"At 10:30 pm, 29 October 1969, the first ARPANET message was sent from UCLA to SRI, launching the Internet revolution.",l:"Los Angeles, CA",c:"USA"},
+{y:1969,n:"Inception of the ARPANET (SRI)",d:"SRI was one of the first two ARPANET nodes; the first documented connection to UCLA on 29 October 1969 laid the foundation for the Internet.",l:"Menlo Park, CA",c:"USA"},
+{y:1969,n:"Invention of Public-key Cryptography",d:"James Ellis, Clifford Cocks, and Malcolm Williamson at GCHQ proved that public-key cryptography was possible (1969–75), kept secret until 1997.",l:"Cheltenham",c:"UK"},
+{y:1969,n:"Apollo 11 Lunar Laser Ranging Experiment (LURE)",d:"On 1 August 1969, Lick Observatory made the first Earth-to-Moon distance measurement with centimetre accuracy using Apollo 11's retro-reflector.",l:"San Jose, CA",c:"USA"},
+{y:1969,n:"Parkes Radiotelescope",d:"Parkes and Honeysuckle Creek stations received Apollo 11 moonwalk video; NASA used Parkes' superior images for the worldwide broadcast.",l:"Parkes",c:"Australia"},
+{y:1969,n:"Mode S Air Traffic Control Radar Beacon System",d:"MIT Lincoln Laboratory began developing Mode S selective secondary surveillance radar in 1969; by 1995 it became the worldwide ATC standard.",l:"Lexington, MA",c:"USA"},
+{y:1969,n:"Charge-Coupled Device (CCD)",d:"Invented by Boyle, Smith, and Tompsett at Bell Labs, CCDs convert light into digital signals for cameras, astronomy, and medical imaging.",l:"Murray Hill, NJ",c:"USA"},
+// 1970–1979
+{y:1970,n:"World's First Low-Loss Optical Fiber for Telecommunications",d:"Maurer, Schultz, and Keck at Corning developed highly pure optical glass in 1970; by 2011 over 1.6 billion km of fiber was installed worldwide.",l:"Corning, NY",c:"USA"},
+{y:1970,n:"University of Hawaii's 2.2-meter Mauna Kea Telescope",d:"Dedicated 26 June 1970, the world's highest and first computer-controlled telescope enabled observations of nearly the entire sky.",l:"Mauna Kea, HI",c:"USA"},
+{y:1969,n:"SPICE (Simulation Program with Integrated Circuit Emphasis)",d:"Created at UC Berkeley in 1969–70, SPICE evolved into the worldwide standard integrated circuit simulator used by virtually all IC designers.",l:"Berkeley, CA",c:"USA"},
+{y:1971,n:"The First Word Processor for the Japanese Language",d:"Ken-ichi Mori's team at Toshiba developed the JW-10, the first Japanese-language word processor, publicly unveiled in 1978.",l:"Tokyo",c:"Japan"},
+{y:1971,n:"Demonstration of the ALOHA Packet Radio Data Network",d:"ALOHAnet (1971) demonstrated that communication channels could be efficiently shared using random access protocols, directly inspiring Ethernet.",l:"Honolulu, HI",c:"USA"},
+{y:1971,n:"First Computerized Tomography (CT) X-ray Scanner",d:"On 1 October 1971, Godfrey Hounsfield's CT scanner at EMI produced the first clinical X-ray images of internal body structures.",l:"Middlesex",c:"UK"},
+{y:1971,n:"Development of the Commercial Laser Printer",d:"Xerox PARC demonstrated laser printing in 1971–72; the Xerox 9700 (1977) launched the non-impact printer industry.",l:"Palo Alto, CA",c:"USA"},
+{y:1972,n:"Nelson River HVDC Transmission System",d:"Beginning 17 June 1972, the Nelson River HVDC system used the highest operating voltage to deliver the most power from a remote Canadian site.",l:"Winnipeg, Manitoba",c:"Canada"},
+{y:1972,n:"Development of the HP-35, the First Handheld Scientific Calculator",d:"The HP-35 was the first handheld calculator to perform transcendental functions, replacing the slide rule for engineers and scientists worldwide.",l:"Palo Alto, CA",c:"USA"},
+{y:1972,n:"Eel River HVDC Converter Station",d:"Operational since 1972, Eel River is the world's first commercial solid-state HVDC converter station, using silicon thyristors.",l:"Eel River, NB",c:"Canada"},
+{y:1972,n:"First Practical Field Emission Electron Microscope",d:"Hitachi commercialised the world's first field emission scanning electron microscope in 1972, enabling ultrahigh-resolution imaging.",l:"Tokyo",c:"Japan"},
+{y:1972,n:"SHAKEY: The World's First Mobile Intelligent Robot",d:"SRI's SHAKEY robot could perceive surroundings, plan actions, recover from errors, and communicate in English — seminal in robotics and AI.",l:"Menlo Park, CA",c:"USA"},
+{y:1972,n:"Polymer Self-Regulating Heat-Tracing Cable",d:"Raychem patented the first commercially successful electric self-regulating heat-tracing cable in 1972, with over one billion feet sold by 2008.",l:"Redwood City, CA",c:"USA"},
+{y:1972,n:"Gravitational-Wave Antenna",d:"From 1972–89, gravitational-wave antenna development culminated in 2015 LIGO detections of gravitational waves from merging black holes.",l:"Livingston, LA / Richland, WA / Cascina, Italy",c:"USA"},
+{y:1972,n:"Deep Space Station 43",d:"Operational from 1972, DSS-43 supported Apollo 17, Viking Mars landers, and all Voyager planetary encounters in NASA's Deep Space Network.",l:"Paddy's River District, ACT",c:"Australia"},
+{y:1972,n:"The Xerox Alto Establishes Personal Networked Computing",d:"Xerox PARC's Alto (1972–83) incorporated mouse, high-resolution display, and Ethernet; its GUI and software profoundly influenced personal computing.",l:"Palo Alto, CA",c:"USA"},
+{y:1972,n:"Pulse Oximetry",d:"Takuo Aoyagi of Nihon Kohden introduced pulse oximetry in 1972, enabling non-invasive continuous blood oxygen measurement.",l:"Saitama",c:"Japan"},
+{y:1973,n:"Superconducting Magnet System for the Fermilab Tevatron",d:"The Tevatron (1973–85) was the first large-scale use of superconducting magnets, achieving over 1 TeV in proton collisions and enabling commercial MRI.",l:"Batavia, IL",c:"USA"},
+{y:1973,n:"The First Two-Dimensional Nuclear Magnetic Resonance Image (MRI)",d:"Stony Brook researchers produced the first 2D MRI image in 1973, paving the way for its worldwide use in medical diagnostics.",l:"Stony Brook, NY",c:"USA"},
+{y:1973,n:"Ethernet Local Area Network (LAN)",d:"Invented at Xerox PARC in 1973 and standardised as IEEE 802.3-1985, Ethernet became ubiquitous in homes, offices, and data centres worldwide.",l:"Palo Alto, CA",c:"USA"},
+{y:1973,n:"Heavy Ion Accelerator Facility",d:"Commissioned in 1973, HIAF uses a 15 MV tandem electrostatic accelerator for nuclear spectroscopy and astrophysics research.",l:"Acton",c:"Australia"},
+{y:1974,n:"First 500 MeV Proton Beam from the TRIUMF Cyclotron",d:"On 15 December 1974, TRIUMF extracted its first 500 MeV proton beam, advancing nuclear physics and nuclear medicine.",l:"Vancouver, BC",c:"Canada"},
+{y:1974,n:"First Real-Time Speech Communication on Packet Networks",d:"In August 1974, MIT Lincoln Lab demonstrated real-time voice over ARPANET, laying the foundation for VoIP and Internet videoconferencing.",l:"Lexington, MA",c:"USA"},
+{y:1974,n:"The CP/M Microcomputer Operating System",d:"Gary Kildall demonstrated CP/M in 1974, the first microprocessor OS allowing communication with a disk drive — foundational for personal computers.",l:"Pacific Grove, CA",c:"USA"},
+{y:1974,n:"Transmission Control Protocol (TCP) Enables the Internet",d:"Cerf and Kahn's 1974 TCP paper described packet-network interconnection; TCP/IP became the core of the operational Internet in 1983.",l:"Stanford, CA",c:"USA"},
+{y:1975,n:"Line Spectrum Pair (LSP) for High-Compression Speech Coding",d:"Invented at NTT in 1975, LSP became an essential component of almost all international speech coding standards.",l:"Tokyo",c:"Japan"},
+{y:1975,n:"Gapless Metal Oxide Surge Arrester (MOSA)",d:"Meidensha developed MOSA in 1975, dramatically improving protection against lightning and contamination in electric power systems.",l:"Tokyo",c:"Japan"},
+{y:1975,n:"Handheld Digital Camera",d:"Eastman Kodak invented the first self-contained portable digital camera in 1975 using a CCD; commercial flash-memory cameras followed.",l:"Rochester, NY",c:"USA"},
+{y:1975,n:"Itaipu Hydroelectric Power Plant",d:"The Brazil-Paraguay Itaipu plant set a world record for the largest single installed hydroelectric capacity (14 GW) when completed in 1984.",l:"Hernandarias",c:"Paraguay"},
+{y:1976,n:"Development of VHS, a World Standard for Home Video Recording",d:"Victor Company of Japan announced VHS on 9 September 1976; it became the world standard for home video tape recorders.",l:"Tokyo",c:"Japan"},
+{y:1976,n:"The Floating Gate EEPROM",d:"Hughes Microelectronics proved the Floating Gate EEPROM (1976–78), a foundation of flash memory and portable computing.",l:"Milpitas, CA",c:"USA"},
+{y:1976,n:"Development of the BELLMAC-32 Microprocessors",d:"Bell Labs' BELLMAC-32 (1976–82) introduced 32-bit transfers, domino circuits, twin-tub CMOS, and other seminal microprocessor design concepts.",l:"Murray Hill, NJ",c:"USA"},
+{y:1977,n:"Lempel-Ziv Data Compression Algorithm",d:"Abraham Lempel and Jacob Ziv developed the LZ compression algorithm at Haifa in 1977, enabling efficient Internet data transmission.",l:"Haifa",c:"Israel"},
+{y:1977,n:"Vapor-phase Axial Deposition for Mass Production of Optical Fiber",d:"NTT's VAD method (1977–83) enabled mass production of high-quality optical fiber, leading to global fiber-optic networks.",l:"Kanagawa",c:"Japan"},
+{y:1977,n:"Perpendicular Magnetic Recording",d:"Prof. Shunichi Iwasaki's team at Tohoku University (1977) developed perpendicular recording; since 2005 it has enabled continued growth of hard disk capacity.",l:"Sendai",c:"Japan"},
+{y:1977,n:"Vertical-Cavity Surface-Emitting Laser (VCSEL)",d:"Kenichi Iga conceived the VCSEL at Tokyo Tech in 1977; now widely used in data communications, laser printing, and facial recognition.",l:"Yokohama",c:"Japan"},
+{y:1978,n:"Speak & Spell — First DSP IC for Speech Generation",d:"Texas Instruments' Speak & Spell (1978) featured the industry's first DSP integrated circuit, the TMS5100, beginning the consumer DSP market.",l:"Dallas, TX",c:"USA"},
+{y:1978,n:"First Digitally Processed Image from a Spaceborne SAR",d:"MDA became the first to digitally reconstruct a Seasat-A synthetic aperture radar image in November 1978.",l:"Richmond, BC",c:"Canada"},
+{y:1978,n:"First Demonstration of a Fibre Bragg Grating",d:"Researchers at CRC Canada first observed photo-induced refractive index changes in optical fibres in 1978, enabling selective optical filters.",l:"Ottawa, Ontario",c:"Canada"},
+{y:1978,n:"Single-Mode Semiconductor Laser for Long-Wavelength Optical Fiber",d:"Tokyo Tech first demonstrated single-mode long-wavelength semiconductor lasers (1978–83), enabling terabit-per-second WDM optical networks.",l:"Tokyo",c:"Japan"},
+{y:1979,n:"Compact Disc Audio Player",d:"Philips demonstrated the Compact Disc Audio Player on 8 March 1979, establishing the standard for digital optical recording.",l:"Eindhoven",c:"Netherlands"},
+{y:1979,n:"20-inch Diameter Photomultiplier Tubes",d:"Hamamatsu Photonics developed 20-inch PMTs for the Kamiokande-II detector; they detected a neutrino burst from Supernova SN1987A.",l:"Iwata City",c:"Japan"},
+{y:1979,n:"Amorphous Silicon TFT Switches for Liquid Crystal Displays",d:"A Dundee University team demonstrated amorphous silicon FETs switching LCDs in 1979, laying the foundation for flat panel TV displays.",l:"Dundee",c:"UK"},
+{y:1979,n:"High Electron Mobility Transistor (HEMT)",d:"The HEMT, invented at Fujitsu in 1979, was the first transistor with an interface between two semiconductors of different bandgap, enabling high-speed wireless.",l:"Kawasaki",c:"Japan"},
+// 1980–Present
+{y:1980,n:"International Standardization of G3 Facsimile",d:"Japanese leadership with the ITU produced the G3 facsimile standard in 1980, enabling the worldwide commercial success of fax.",l:"Yokosuka City",c:"Japan"},
+{y:1980,n:"First RISC (Reduced Instruction-Set Computing) Microprocessor",d:"UC Berkeley students designed and built the first VLSI RISC processor (1980–82), influencing instruction sets for smartphones and tablets.",l:"Berkeley, CA",c:"USA"},
+{y:1980,n:"Outdoor Large-Scale Color Display System",d:"Mitsubishi Electric developed the world's first large-scale emissive colour video display, installed at Dodger Stadium, Los Angeles, in 1980.",l:"Nagasaki",c:"Japan"},
+{y:1980,n:"First Commercial Digital Signal Processor Chip",d:"NEC's μPD7720 (1980) was the first commercially available programmable DSP chip, enabling real-time digital signal processing.",l:"Kawasaki",c:"Japan"},
+{y:1980,n:"Inverter-Driven Air Conditioner",d:"Toshiba mass-produced the world's first inverter-driven air conditioners in 1980–81, significantly improving comfort and energy efficiency.",l:"Tadehara, Fuji-shi",c:"Japan"},
+{y:1980,n:"Origin of the IEEE 802 Family of Networking Standards",d:"IEEE 802 (started 1980) produced 802.3 Ethernet, 802.11 Wi-Fi, and 802.15 Bluetooth — enabling global network interconnection.",l:"Mountain View, CA",c:"USA"},
+{y:1980,n:"Intel 8087 Math Coprocessor",d:"Intel's 8087 (1980) vastly expanded x86 floating-point capabilities; its arithmetic was the basis for the IEEE 754 Floating-Point Standard.",l:"Haifa",c:"Israel"},
+{y:1981,n:"16-bit Monolithic DAC for Digital Audio",d:"Burr-Brown demonstrated the first 16-bit monolithic DAC in 1982, enabling affordable high-quality compact disc players.",l:"Tucson, AZ / Dallas, TX",c:"USA"},
+{y:1981,n:"Map-Based Automotive Navigation System",d:"Honda's 'Electro Gyrocator' (1981) was the world's first map-based automotive navigation system, pioneering on-board GPS-style guidance.",l:"Tokyo",c:"Japan"},
+{y:1981,n:"The Development of RenderMan® for Photorealistic Graphics",d:"RenderMan (1981–88) from Lucasfilm/Pixar revolutionised photorealistic rendering with shading languages and stochastic antialiasing.",l:"Emeryville, CA",c:"USA"},
+{y:1982,n:"Nobeyama 45-m Telescope",d:"Completed in 1982, the world's largest millimetre-wave antenna discovered new interstellar molecules and a black hole.",l:"Mitaka, Tokyo",c:"Japan"},
+{y:1982,n:"Human Rescue Enabled by Space Technology",d:"The COSPAS-SARSAT satellite system located a crashed aircraft in British Columbia on 9 September 1982, saving all on board — first of many thousands such rescues.",l:"Ottawa",c:"Canada"},
+{y:1982,n:"First Large-Scale Fingerprint ID",d:"NEC introduced the world's first large-scale automated fingerprint identification system (AFIS) in 1982, enabling police to match latent prints against a large database.",l:"Minato-ku, Tokyo",c:"Japan"},
+{y:1982,n:"Commercialization of Multilayer Ceramic Capacitors with Nickel Electrodes",d:"Murata commercialised Ni-MLCC in 1982; annual production exceeded one trillion units in 2021, ubiquitous in electronics.",l:"Kyoto",c:"Japan"},
+{y:1982,n:"Fractional Quantum Hall Effect",d:"Daniel Tsui and Horst Störmer observed a new incompressible quantum fluid in GaAs heterostructures at Bell Labs in 1982.",l:"Murray Hill, NJ",c:"USA"},
+{y:1984,n:"First Direct Broadcast Satellite Service",d:"NHK began the world's first direct broadcast satellite service in May 1984 after 18 years of research.",l:"Tokyo",c:"Japan"},
+{y:1984,n:"The MU (Middle and Upper atmosphere) Radar",d:"Kyoto University's MU radar (1984) was the first large-scale MST radar with a 2D active phased array, enabling continuous atmosphere observation.",l:"Koka-city, Shiga",c:"Japan"},
+{y:1984,n:"Active Shielding of Superconducting Magnets",d:"The first actively shielded superconducting MRI magnets were designed and produced at Eynsham, reducing MRI system size and enabling easier hospital deployment.",l:"Eynsham, Oxfordshire",c:"UK"},
+{y:1984,n:"MPEG Multimedia Integrated Circuits",d:"Thomson Semiconducteurs (ST) developed MPEG-2 decoders by 1993; worldwide adoption made compressed full-motion video inexpensive for everyday use.",l:"Grenoble",c:"France"},
+{y:1984,n:"TRON Real-time Operating System Family",d:"University of Tokyo's TRON OS (1984) was openly shared; copies have been adopted in billions of embedded devices worldwide.",l:"Tokyo",c:"Japan"},
+{y:1984,n:"Development of 193-nm Projection Photolithography",d:"MIT Lincoln Laboratory pioneered 193-nm projection lithography (1984–96), the dominant high-resolution patterning technique for IC manufacturing.",l:"Lexington, MA",c:"USA"},
+{y:1984,n:"The Field Programmable Gate Array (FPGA)",d:"Ross Freeman co-founded Xilinx in 1984; the XC2064 FPGA (1985) enabled 'fabless' hardware companies using software tools to design silicon.",l:"San Jose, CA",c:"USA"},
+{y:1985,n:"Toshiba T1100 — Pioneering Contribution to Laptop PC",d:"The Toshiba T1100 (1985) was the first true portable IBM-PC-compatible laptop, demonstrating that personal computers could be truly portable.",l:"Tokyo",c:"Japan"},
+{y:1985,n:"Emergency Warning Code Signal Broadcasting System",d:"NHK began broadcasting emergency warning code signals in 1985, embedded in radio broadcasts for reliable public emergency notification.",l:"Tokyo",c:"Japan"},
+{y:1985,n:"Multiple Technologies on a Chip (BCD Process)",d:"SGS (STMicroelectronics) pioneered combining Bipolar, CMOS, and DMOS transistors in a single chip in 1985, enabling power-analog-digital integration.",l:"Agrate Brianza",c:"Italy"},
+{y:1985,n:"IEEE Standard 754 for Binary Floating-Point Arithmetic",d:"UC Berkeley's IEEE 754 (drafted 1978, standardised 1985) revolutionised numerical computing with unprecedented software reliability and portability.",l:"Berkeley, CA",c:"USA"},
+{y:1986,n:"Fiber Optic Connectors (SC and MPO)",d:"NTT invented physical-contact fiber optic connectors in 1986; SC and MPO connectors became global standards for data centres and carriers.",l:"Tsukuba City",c:"Japan"},
+{y:1987,n:"High-Temperature Superconductivity",d:"YBa2Cu3O7 (YBCO), the first superconductor above liquid nitrogen temperature (77 K), was discovered at the University of Houston in 1987.",l:"Houston, TX",c:"USA"},
+{y:1987,n:"SPARC RISC Architecture",d:"Sun Microsystems introduced SPARC in 1987; its scalable architecture delivered high-performance workstations and servers for engineering and cloud computing.",l:"Santa Clara, CA",c:"USA"},
+{y:1987,n:"Superconductivity at 93 Kelvin",d:"On 29 January 1987 at Huntsville, YBCO material was first found to exhibit stable superconductivity at 93 K, above liquid nitrogen boiling point.",l:"Huntsville, AL",c:"USA"},
+{y:1987,n:"WaveLAN, Precursor of Wi-Fi",d:"Dutch engineers in Nieuwegein demonstrated WaveLAN in November 1987, directly leading to the formation of the IEEE 802.11 Working Group.",l:"Nieuwegein",c:"Netherlands"},
+{y:1987,n:"MTI Portable Satellite Communication Terminals",d:"Microelectronics Technology Inc. (MTI) pioneered compact satellite terminals for disaster zones, war zones, and remote expeditions (1987–95).",l:"Hsinchu",c:"Taiwan"},
+{y:1988,n:"Sharp 14-inch TFT-LCD for TV",d:"Sharp demonstrated a 14-inch TFT-LCD for TV in 1988, convincing the industry to invest in large flat panel displays; TFT-LCDs now dominate worldwide.",l:"Nara",c:"Japan"},
+{y:1988,n:"Virginia Smith HVDC Converter Station",d:"Siemens' Virginia Smith station (1988) connected the eastern and western US grids with all solid-state 200-MW HVDC conversion.",l:"Lakewood, CO",c:"USA"},
+{y:1988,n:"Trans-Atlantic Telephone Fiber-Optic Submarine Cable (TAT-8)",d:"TAT-8, the first transoceanic fiber-optic cable, entered service 14 December 1988 with 40,000 telephone-call capacity.",l:"Middletown, NJ",c:"USA"},
+{y:1988,n:"First Robotic Control from Human Brain Signals",d:"In 1988, EEG signals from a human brain first controlled a robot's movement at the Laboratory of Intelligent Machines in Skopje.",l:"Skopje",c:"North Macedonia"},
+{y:1988,n:"Laser Ionization Mass Spectrometer",d:"Shimadzu's 1988 mass spectrometer for macromolecules — using soft laser desorption ionisation — led to new pharmaceuticals; Koichi Tanaka won the 2002 Nobel Prize in Chemistry.",l:"Kyoto",c:"Japan"},
+{y:1989,n:"Development of CDMA for Cellular Communications",d:"Qualcomm publicly demonstrated CDMA-based digital cellular radio on 7 November 1989, increasing capacity and extending battery life.",l:"San Diego, CA",c:"USA"},
+{y:1989,n:"The Pioneering TRON Intelligent House",d:"Built in Tokyo in 1989 using ~1,000 networked computers, the TRON Intelligent House demonstrated IoT and 'ubiquitous computing' years before the term existed.",l:"Tokyo",c:"Japan"},
+{y:1989,n:"Convolutional Neural Networks",d:"Yann LeCun at Bell Labs developed LeNet and Convolutional Neural Networks (1989), establishing deep learning as a branch of AI.",l:"New Providence, NJ",c:"USA"},
+{y:1989,n:"Practical Blue Light-Emitting Diode",d:"Akasaki and Amano (1989) and Nakamura (1993) demonstrated GaN-based blue LEDs; their work was recognised by the 2014 Nobel Prize in Physics.",l:"Nagoya",c:"Japan"},
+{y:1992,n:"Super-Resolved Fluorescence Microscopy",d:"The first super-resolution image of a biological sample was obtained at Bell Labs in 1992, enabling single-molecule microscopy.",l:"New Providence, NJ",c:"USA"},
+{y:1992,n:"Silica-Based Arrayed-Waveguide Gratings",d:"NTT invented silica-based AWGs in 1992; commercialised in 1996, they became essential for WDM optical network capacity expansion.",l:"Kanagawa",c:"Japan"},
+{y:1993,n:"Asymmetric Digital Subscriber Line (ADSL) Enabling Broadband Internet",d:"Alcatel's Antwerp team developed ADSL technology (1993–97) that brought affordable multi-megabit broadband Internet to nearly one billion people.",l:"Antwerp",c:"Belgium"},
+{y:1993,n:"Color Plasma Television",d:"Fujitsu commercialised the first practical colour plasma TV (21-inch) in 1993, opening worldwide markets for large flat-panel televisions.",l:"Hyogo",c:"Japan"},
+{y:1994,n:"Giant Metrewave Radio Telescope (GMRT)",d:"GMRT near Pune, with 30 antennas spanning 25 km, is one of the world's largest low-frequency radio telescopes, contributing to pulsar and galaxy research.",l:"Pune",c:"India"},
+{y:1994,n:"QR (Quick Response) Code",d:"DENSO developed the QR Code in 1994, enabling fast scanning of large amounts of data; now ubiquitous in payments, advertising, and identification.",l:"Kariya",c:"Japan"},
+{y:1995,n:"Rijndael and the Advanced Encryption Standard (AES)",d:"Belgian cryptographers Daemen and Rijmen created Rijndael (1995–98); it won the NIST competition and became the global AES standard in 2001.",l:"Heverlee",c:"Belgium"},
+{y:1996,n:"PageRank and the Birth of Google",d:"Invented in 1996 at Stanford, PageRank was the basis of the search engine that launched Google in 1998.",l:"Stanford, CA",c:"USA"},
+{y:1996,n:"Large-Scale Commercialization of a CDMA Cellular Communication System",d:"South Korea inaugurated the world's first CDMA commercial service in 1996, validating second-generation digital mobile technology.",l:"Seoul",c:"South Korea"},
+{y:1996,n:"Integrated Circuits for Satellite Digital Radio",d:"STMicroelectronics developed three low-power ICs for satellite digital radio reception (1996–97), providing inexpensive educational and entertainment services worldwide.",l:"Agrate Brianza",c:"Italy"},
+{y:1996,n:"Universal Serial Bus (USB)",d:"The first USB specification was published in January 1996; USB became the world's most recognisable cable, connector, and logo.",l:"Hillsboro, OR",c:"USA"},
+{y:1996,n:"Honda P2 Self-Contained, Dynamically-Walking Humanoid Robot",d:"Honda's P2 (1996) was the first self-contained autonomous bipedal humanoid robot capable of stable dynamic walking and stair climbing.",l:"Suzuka-shi, Mie",c:"Japan"},
+{y:1997,n:"Toyota Prius — World's First Mass-Produced Hybrid Vehicle",d:"Toyota Prius (1997) achieved revolutionary fuel efficiency using an internal combustion engine and two electric motors, popularising hybrid vehicles worldwide.",l:"Aichi",c:"Japan"},
+// Special Citations
+{y:1856,n:"Nikola Tesla — Electrical Pioneer (Special Citation)",d:"On the 150th anniversary of his birth, IEEE recognised Tesla's contributions to polyphase power systems, electromagnetic waves, and high-voltage experiments.",l:"Belgrade",c:"Serbia"},
+{y:1924,n:"Commonwealth Solar — Mount Stromlo Observatory (Special Citation)",d:"Since 1924, the Commonwealth Solar Observatory has advanced solar observation, astrophysics instrumentation, and the Australian space industry.",l:"Weston Creek, ACT",c:"Australia"},
+{y:1979,n:"IEEE Special Citation — Computer History Museum",d:"The Computer History Museum houses the world's largest collection of computers and related media, preserving the history of the Information Age.",l:"Mountain View, CA",c:"USA"},
+{y:1996,n:"Special Citation — Heinz Nixdorf MuseumsForum",d:"One of the largest computer museums in the world, presenting 5,000 years of computing history from circa 3000 BCE to the modern digital age.",l:"Paderborn",c:"Germany"},
+];
+
+let sortMode='date';
+function setSort(m){
+  sortMode=m;
+  document.getElementById('btnDate').classList.toggle('active',m==='date');
+  document.getElementById('btnLoc').classList.toggle('active',m==='location');
+  renderTable();
+}
+function renderTable(){
+  const q=document.getElementById('msSearch').value.trim().toLowerCase();
+  const body=document.getElementById('msBody');
+  const noRes=document.getElementById('noResults');
+  let rows=M.filter(m=>!q||(m.n+' '+m.d+' '+m.l+' '+m.c+' '+m.y).toLowerCase().includes(q));
+  if(sortMode==='date') rows.sort((a,b)=>a.y-b.y||a.n.localeCompare(b.n));
+  else rows.sort((a,b)=>a.c.localeCompare(b.c)||a.l.localeCompare(b.l)||a.y-b.y);
+  document.getElementById('msCount').textContent=rows.length+' milestone'+(rows.length!==1?'s':'');
+  if(!rows.length){body.innerHTML='';noRes.style.display='block';return;}
+  noRes.style.display='none';
+  let html='',lastGrp=null;
+  rows.forEach(m=>{
+    if(sortMode==='location'&&m.c!==lastGrp){
+      html+=`<tr class="section-hdr"><td colspan="5"><i class="fas fa-globe-americas"></i> ${m.c}</td></tr>`;
+      lastGrp=m.c;
+    }
+    const ieeeUrl='https://ethw.org/Milestones:'+encodeURIComponent(m.n.replace(/ /g,'_')).replace(/%28/g,'(').replace(/%29/g,')').replace(/%2C/g,',')+',_'+m.y;
+    const rc=m.study?' class="studied"':'';
+    const badge=m.study?'<span class="badge-studied">STUDIED</span>':'';
+    const explore=m.study&&m.link?`<a href="${m.link}" target="_blank" class="link-btn explore"><i class="fas fa-flask"></i> Explore</a>`:'';
+    const ieee=`<a href="${ieeeUrl}" target="_blank" class="link-btn ieee" title="IEEE ETHW"><i class="fas fa-external-link-alt"></i> IEEE</a>`;
+    html+=`<tr${rc}><td class="td-year">${m.y}</td><td class="td-name">${m.n}${badge}</td><td class="td-desc" title="${m.d.replace(/"/g,'&quot;')}">${m.d}</td><td class="td-loc"><i class="fas fa-map-marker-alt loc-icon"></i>${m.l}</td><td class="td-links">${explore}${ieee}</td></tr>`;
+  });
+  body.innerHTML=html;
+}
+renderTable();
+</script>
+</body>
+</html>
