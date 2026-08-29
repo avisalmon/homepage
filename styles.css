@@ -1,4 +1,4 @@
-/* Base styles */
+﻿/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -199,115 +199,77 @@ body {
     }
 }
 
-/* Daily Brief newspaper banner */
-.daily-banner {
-    padding: 2.5rem 2rem;
-    background: #1a1a2e;
-}
-
-.daily-paper {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-decoration: none;
-    color: #1c1c1c;
+/* Daily Brief strip (hero quick-links) */
+.quick-link-card.daily-strip {
     background: #f7f3e8;
-    background-image:
-        repeating-linear-gradient(0deg, rgba(0,0,0,0.022) 0 1px, transparent 1px 4px);
+    background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.022) 0 1px, transparent 1px 4px);
     border: 1px solid #d8cfb8;
-    border-radius: 4px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #1c1c1c;
 }
 
-.daily-paper:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+.quick-link-card.daily-strip:hover {
+    background: #fffdf6;
+    border-color: #b3341f;
 }
 
-.daily-flag {
+.daily-strip-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.9rem;
+}
+
+.daily-strip-content > i {
     flex-shrink: 0;
-    width: 150px;
-    padding: 1.5rem 1rem;
-    background: #1c1c1c;
-    color: #f7f3e8;
-    text-align: center;
+    font-size: 1.6rem;
+    color: #1c1c1c;
 }
 
-.daily-flag i {
-    font-size: 2.6rem;
-}
-
-.daily-flag span {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-}
-
-.daily-body {
+.daily-strip-text {
     flex: 1;
-    padding: 1.75rem 2rem;
-    text-align: center;
+    min-width: 0;
+    padding-left: 0.9rem;
+    border-left: 3px double #1c1c1c;
 }
 
-.daily-masthead {
+.daily-strip-text h3 {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 3px double #1c1c1c;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0 0 0.1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: #1c1c1c;
 }
 
-.daily-edition {
-    flex: 1;
-    font-size: 0.68rem;
+.daily-strip-text h3 .thin {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.daily-strip-sub {
+    font-family: inherit;
+    font-size: 0.62rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: #6b6355;
 }
 
-.daily-title {
+.daily-strip-text p {
     margin: 0;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2.6rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: 0.01em;
-    color: #1c1c1c;
-    direction: rtl;
+    font-size: 0.8rem;
+    color: #4a463d;
 }
 
-.daily-title .thin {
-    font-weight: 400;
-    font-style: italic;
-}
-
-.daily-deck {
-    max-width: 620px;
-    margin: 1rem auto 1.1rem;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.02rem;
-    line-height: 1.6;
-    color: #3d3a33;
-}
-
-.daily-cta {
-    display: inline-block;
-    padding: 0.6rem 1.4rem;
+.daily-strip-cta {
+    flex-shrink: 0;
+    padding: 0.35rem 0.8rem;
     background: #1c1c1c;
     color: #f7f3e8;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -315,12 +277,12 @@ body {
     transition: background 0.3s ease;
 }
 
-.daily-paper:hover .daily-cta {
+.daily-strip:hover .daily-strip-cta {
     background: #b3341f;
 }
 
-.daily-cta i {
-    margin-left: 0.4rem;
+.daily-strip-cta i {
+    margin-left: 0.35rem;
 }
 
 .nav-daily i {
@@ -328,30 +290,8 @@ body {
 }
 
 @media (max-width: 768px) {
-    .daily-paper {
-        flex-direction: column;
-    }
-
-    .daily-flag {
-        flex-direction: row;
-        width: 100%;
-        padding: 0.9rem;
-    }
-
-    .daily-flag i {
-        font-size: 1.5rem;
-    }
-
-    .daily-body {
-        padding: 1.5rem 1.25rem;
-    }
-
-    .daily-edition {
+    .daily-strip-cta {
         display: none;
-    }
-
-    .daily-title {
-        font-size: 2rem;
     }
 }
 
